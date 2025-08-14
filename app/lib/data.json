@@ -1,0 +1,192 @@
+[
+  {
+    "id": "1",
+    "image": "/houses/img(1).jpg",
+    "location": "Lekki, Lagos",
+    "reviews": 4.8,
+    "price": "85M",
+    "agent": {
+      "name": "Tunde Johnson",
+      "contact": "+2348012345678"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": true,
+      "beds": 4,
+      "bathrooms": 3,
+      "furnished": true
+    },
+    "type": "4-Bedroom Duplex"
+  },
+  {
+    "id": "2",
+    "image": "/houses/img(2).jpg",
+    "location": "Garki, Abuja",
+    "reviews": 4.6,
+    "price": "65M",
+    "agent": {
+      "name": "Amaka Okafor",
+      "contact": "+2348098765432"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 3,
+      "bathrooms": 2,
+      "furnished": false
+    },
+    "type": "3-Bedroom Flat"
+  },
+  {
+    "id": "3",
+    "image": "/houses/img(3).jpg",
+    "location": "Victoria Island, Lagos",
+    "reviews": 4.9,
+    "price": "120M",
+    "agent": {
+      "name": "Chinedu Eze",
+      "contact": "+2347012345678"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": true,
+      "beds": 5,
+      "bathrooms": 4,
+      "furnished": true
+    },
+    "type": "Luxury Penthouse"
+  },
+  {
+    "id": "4",
+    "image": "/houses/img(4).jpg",
+    "location": "Enugu, Enugu State",
+    "reviews": 4.4,
+    "price": "35M",
+    "agent": {
+      "name": "Ngozi Nwankwo",
+      "contact": "+2348123456789"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 2,
+      "bathrooms": 2,
+      "furnished": true
+    },
+    "type": "2-Bedroom Apartment"
+  },
+  {
+    "id": "5",
+    "image": "/houses/img(5).jpg",
+    "location": "Port Harcourt, Rivers",
+    "reviews": 4.7,
+    "price": "78M",
+    "agent": {
+      "name": "Emeka Uche",
+      "contact": "+2348034567890"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": true,
+      "beds": 4,
+      "bathrooms": 3,
+      "furnished": false
+    },
+    "type": "Detached Duplex"
+  },
+  {
+    "id": "6",
+    "image": "/houses/img(6).jpg",
+    "location": "Ikeja, Lagos",
+    "reviews": 4.5,
+    "price": "55M",
+    "agent": {
+      "name": "Sarah Adewale",
+      "contact": "+2347056789123"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 3,
+      "bathrooms": 2,
+      "furnished": true
+    },
+    "type": "3-Bedroom Bungalow"
+  },
+  {
+    "id": "7",
+    "image": "/houses/img(7).jpg",
+    "location": "Abeokuta, Ogun State",
+    "reviews": 4.3,
+    "price": "25M",
+    "agent": {
+      "name": "Kehinde Balogun",
+      "contact": "+2347045678912"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 2,
+      "bathrooms": 1,
+      "furnished": false
+    },
+    "type": "2-Bedroom Flat"
+  },
+  {
+    "id": "8",
+    "image": "/houses/img(8).jpg",
+    "location": "Awka, Anambra State",
+    "reviews": 4.6,
+    "price": "42M",
+    "agent": {
+      "name": "Ifeanyi Obi",
+      "contact": "+2347089123456"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 3,
+      "bathrooms": 2,
+      "furnished": true
+    },
+    "type": "3-Bedroom Terrace"
+  },
+  {
+    "id": "9",
+    "image": "/houses/img(9).jpg",
+    "location": "Calabar, Cross River",
+    "reviews": 4.2,
+    "price": "30M",
+    "agent": {
+      "name": "Blessing Effiong",
+      "contact": "+2347098765432"
+    },
+    "key_features": {
+      "parking": false,
+      "pool": true,
+      "beds": 2,
+      "bathrooms": 2,
+      "furnished": true
+    },
+    "type": "2-Bedroom Luxury Flat"
+  },
+  {
+    "id": "10",
+    "image": "/houses/img(10).jpg",
+    "location": "Kano, Kano State",
+    "reviews": 3.8,
+    "price": "38M",
+    "agent": {
+      "name": "Abdullahi Musa",
+      "contact": "+2348023456781"
+    },
+    "key_features": {
+      "parking": true,
+      "pool": false,
+      "beds": 3,
+      "bathrooms": 2,
+      "furnished": false
+    },
+    "type": "3-Bedroom Semi-Detached"
+  }
+]

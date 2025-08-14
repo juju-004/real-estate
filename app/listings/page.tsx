@@ -1,0 +1,77 @@
+"use client";
+
+import React from "react";
+import { BathIcon, BedIcon } from "lucide-react";
+import data from "@/app/lib/data.json";
+import { useRouter } from "next/navigation";
+import { StarIcon } from "@heroicons/react/24/solid";
+import { ReviewStars } from "../components/Courses";
+
+export default function AllHouses() {
+  const router = useRouter();
+
+  const navigate = (id: string) => {
+    router.push(`/listing/${id}`);
+  };
+
+  return (
+    <div className="p-4 md:p-8 max-w-7xl mx-auto">
+      {/* Houses Grid */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {data.map((items, i) => (
+          <div
+            key={i}
+            onClick={() => navigate(items.id)}
+            className="bg-white  col-span-1  px-3 pt-3 pb-12 hover:shadow-sm hover:scale-[0.97] cursor-pointer duration-300 shadow-courses rounded-2xl"
+          >
+            <div className="relative rounded-3xl ">
+              <div
+                style={{ backgroundImage: `url("${items.image}")` }}
+                className="m-auto w-full h-72 rounded-3xl bg-cover bg-center clipPath"
+              ></div>
+            </div>
+
+            <div className="px-3">
+              <h4 className="text-2xl font-bold pt-6 text-black">
+                {items.type}
+              </h4>
+              <h4 className="text-2xl font-bold pt-1 text-black">
+                {items.location}
+              </h4>
+
+              <div className="flex justify-between items-center py-6">
+                <div className="flex gap-4">
+                  <h3 className="text-red text-22xl font-medium">
+                    {items.reviews}
+                  </h3>
+                  <ReviewStars rating={items.reviews} />
+                </div>
+                <div>
+                  <h3 className="text-3xl font-bold">₦{items.price}</h3>
+                </div>
+              </div>
+
+              <hr style={{ color: "#C4C4C4" }} />
+
+              <div className="flex justify-between pt-6">
+                <div className="flex gap-4">
+                  <BathIcon />
+                  <h3 className="text-base font-medium text-black opacity-75">
+                    {items.key_features.bathrooms} bathrooms
+                  </h3>
+                </div>
+                <div className="flex gap-4">
+                  <BedIcon />
+
+                  <h3 className="text-base font-medium text-black opacity-75">
+                    {items.key_features.beds} beds
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
