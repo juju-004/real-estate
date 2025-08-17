@@ -1,3 +1,5 @@
+"use client";
+
 import { Disclosure } from "@headlessui/react";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -6,7 +8,9 @@ import Drawer from "./Drawer";
 import Drawerdata from "./Drawerdata";
 import Registerdialog from "./Registerdialog";
 import Logo from "./Logo";
-import { useSession } from "@/app/context/session";
+import { useSession } from "@/context/SessionContext";
+import LoginDialog from "./LoginDialog";
+import Dropdown from "./Dropdon";
 
 interface NavigationItem {
   name: string;
@@ -16,7 +20,9 @@ interface NavigationItem {
 
 const navigation: NavigationItem[] = [
   { name: "Home", href: "/", current: true },
-  { name: "View Listings", href: "/listings", current: false },
+  { name: "About", href: "/#about", current: false },
+  { name: "Services", href: "/#services", current: false },
+  { name: "Listings", href: "/listings", current: false },
 ];
 
 function classNames(...classes: string[]) {
@@ -43,7 +49,7 @@ const CustomLink = ({
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const { session, logout } = useSession();
+  const session = useSession();
 
   const [currentLink, setCurrentLink] = useState("/");
 
@@ -86,27 +92,19 @@ const Navbar = () => {
             </div>
 
             {/* SIGNIN DIALOG */}
-            <div className="hidden lg:flex gap-3">
-              {session?.email ? (
-                <>
-                  <div className="flex gap-3 items-center">
-                    <span className="w-9 text-white flex rotate-12 items-center justify-center h-9 bg-Blueviolet rounded-xl font-bold text-lg">
-                      {session.email[0]}
-                    </span>
-                    {session.email}
-                  </div>{" "}
-                  <button
-                    onClick={logout}
-                    className="px-7 py-2 font-bold hover:scale-95 duration-300 text-red bg-red/10 rounded-xl"
-                  >
-                    Sign out
-                  </button>
-                </>
-              ) : (
-                <Registerdialog btnClass="text-Blueviolet text-lg font-medium ml-9 py-5 px-16 transition duration-150 ease-in-out rounded-full bg-semiblueviolet hover:text-white hover:bg-Blueviolet" />
-              )}
-            </div>
-            <div className="block lg:hidden">
+            {session ? (
+              <Dropdown>
+                <span className="w-14 text-white flex uppercase  items-center justify-center h-14 bg-cornflowerblue rounded-full font-bold text-xl">
+                  {session.email[0]}
+                </span>
+              </Dropdown>
+            ) : (
+              <div className="flex">
+                <LoginDialog btnClass="text-Blueviolet sm:text-lg py-2 px-4 text-base font-medium  sm:ml-9 sm:py-3 sm:px-8 transition duration-150 ease-in-out rounded-full bg-semiblueviolet hover:text-white hover:bg-Blueviolet" />
+                <Registerdialog btnClass="text-Blueviolet hidden lg:block sm:text-lg py-2 px-4 text-base font-medium sm:ml-9 sm:py-3 sm:px-8 transition duration-150 ease-in-out rounded-full bg-semiblueviolet hover:text-white hover:bg-Blueviolet" />
+              </div>
+            )}
+            <div className="block lg:hidden ml-4">
               <Bars3Icon
                 className="block h-6 w-6"
                 aria-hidden="true"

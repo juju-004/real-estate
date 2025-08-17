@@ -2,9 +2,8 @@
 
 import React from "react";
 import { BathIcon, BedIcon } from "lucide-react";
-import data from "@/app/lib/data.json";
+import data from "@/lib/data.json";
 import { useRouter } from "next/navigation";
-import { StarIcon } from "@heroicons/react/24/solid";
 import { ReviewStars } from "../components/Courses";
 
 export default function AllHouses() {

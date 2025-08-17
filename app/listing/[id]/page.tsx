@@ -1,14 +1,35 @@
+"use client";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import data from "@/app/lib/data.json";
+import data from "@/lib/data.json";
 import { MapPinIcon } from "@heroicons/react/20/solid";
 import { StarIcon, TruckIcon } from "@heroicons/react/24/solid";
 import { BathIcon, BedIcon, Sparkles, WavesLadder } from "lucide-react";
+import { toast } from "sonner";
+import { useSession } from "@/context/SessionContext";
+import axios from "axios";
 
 export default function PropertyPage({ params }: { params: { id: string } }) {
   const property = data.find((p) => p.id === params.id);
+  const session = useSession();
 
   if (!property) return notFound();
+
+  const handlePayment = async () => {
+    if (!session) return;
+    try {
+      const res = await axios.post(`/api/payments/init`, {
+        email: session?.email,
+        amount: parseFloat(property.price) * 1_000_000,
+      });
+
+      window.location.href = res.data.authorization_url;
+      return;
+    } catch (err) {
+      toast.error("Couldn't connect to payment Gateway.");
+      return;
+    }
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
@@ -79,6 +100,12 @@ export default function PropertyPage({ params }: { params: { id: string } }) {
         <p className="font-medium">{property.agent.name}</p>
         <p className="text-gray-500">{property.agent.contact}</p>
       </div>
+      <button
+        onClick={handlePayment}
+        className="px-9 py-3 bg-Blueviolet mt-9 shadow-Blueviolet shadow-md active:scale-95 duration-200 text-white font-bold text-xl rounded-lg"
+      >
+        Rent Now
+      </button>
     </div>
   );
 }

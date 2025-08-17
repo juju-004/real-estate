@@ -7,7 +7,7 @@ import { filterError } from "@/lib/helpers";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-const Register = ({ btnClass }: { btnClass: string }) => {
+const LoginDialog = ({ btnClass }: { btnClass: string }) => {
   let [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,14 +32,13 @@ const Register = ({ btnClass }: { btnClass: string }) => {
       const password = formData.get("password") as string;
       const email = formData.get("email") as string;
 
-      await axios.post("/api/auth/signup", {
+      await axios.post("/api/auth/signin", {
         email,
         password,
       });
-      toast.success("Registration successful");
+      toast.success("Sign in successful");
       router.refresh();
     } catch (error: unknown) {
-      setIsSubmitting(false);
       toast.error(filterError(error));
       return null;
     }
@@ -49,7 +48,7 @@ const Register = ({ btnClass }: { btnClass: string }) => {
     <>
       <div className=" inset-y-0 right-0 flex items-center pr-2 static sm:inset-auto  sm:pr-0">
         <button className={btnClass} onClick={openModal}>
-          Sign Up
+          Login
         </button>
       </div>
 
@@ -85,7 +84,7 @@ const Register = ({ btnClass }: { btnClass: string }) => {
                         <Logo />
 
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                          Register your account
+                          Login to your account
                         </h2>
                       </div>
                       <form className="mt-8 space-y-6" onSubmit={submit}>
@@ -125,13 +124,21 @@ const Register = ({ btnClass }: { btnClass: string }) => {
                           </div>
                         </div>
 
-                        <div className="flex items-center">
-                          <label
-                            htmlFor="remember-me"
-                            className="ml-2 block text-sm text-gray-900"
-                          >
-                            By signing up, you agree to our terms & conditions
-                          </label>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <input
+                              id="remember-me"
+                              name="remember-me"
+                              type="checkbox"
+                              className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            />
+                            <label
+                              htmlFor="remember-me"
+                              className="ml-2 block text-sm text-gray-900"
+                            >
+                              Remember me
+                            </label>
+                          </div>
                         </div>
 
                         <div>
@@ -146,9 +153,7 @@ const Register = ({ btnClass }: { btnClass: string }) => {
                                 aria-hidden="true"
                               />
                             </span>
-                            {isSubmitting
-                              ? "Registering user..."
-                              : "Register Now"}
+                            {isSubmitting ? "Logging you in..." : "Login"}
                           </button>
                         </div>
                       </form>
@@ -174,4 +179,4 @@ const Register = ({ btnClass }: { btnClass: string }) => {
   );
 };
 
-export default Register;
+export default LoginDialog;
