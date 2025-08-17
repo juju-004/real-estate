@@ -8,8 +8,6 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, amount } = body; // ✅ get userId from token/session in real app
 
-    console.log(email, amount);
-
     if (!email || !amount) {
       return NextResponse.json({ error: "Invalid Request" }, { status: 400 });
     }
@@ -19,7 +17,7 @@ export async function POST(req: NextRequest) {
       {
         email,
         amount: amount * 100, // Paystack uses kobo
-        callback_url: `http://localhost:3000/verify`,
+        callback_url: `https://rent-itt.vercel.app/verify`,
       },
       {
         headers: {

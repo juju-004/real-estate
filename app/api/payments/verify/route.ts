@@ -8,8 +8,6 @@ export async function POST(req: NextRequest) {
     const { ref, email } = await req.json();
     const { users, transactions } = await getCollections();
 
-    console.log("entered", ref, email);
-
     const user = await users.findOne({ email });
     const transaction = await transactions.findOne(
       { reference: ref, email },
@@ -19,8 +17,11 @@ export async function POST(req: NextRequest) {
     if (!user)
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    // if (transaction)
-    //   return NextResponse.json({ error: "Already verified" }, { status: 400 });
+    if (transaction)
+      return NextResponse.json(
+        { error: "Payment already verified" },
+        { status: 400 }
+      );
 
     const response = await axios.get(
       `https://api.paystack.co/transaction/verify/${ref}`,
